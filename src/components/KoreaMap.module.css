@@ -1,0 +1,42 @@
+/**
+ * KoreaMap.tsx를 위한 CSS 모듈
+ *
+ * - 전체적인 톤은 여행 서비스에 어울리는 깔끔하고 부드러운 느낌을 지향합니다.
+ * - 반응형 디자인과 지도 스타일(기본, 호버, 선택)을 정의합니다.
+ */
+
+/* 지도 컨테이너 스타일 */
+.mapContainer {
+  width: 100%;
+  max-width: 700px; /* 데스크톱에서 지도의 최대 너비를 제한하여 과도하게 커지는 것을 방지 */
+  margin: 0 auto; /* 수평 중앙 정렬 */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.mapSvg {
+  width: 100%;
+  height: auto; /* SVG의 비율을 유지하면서 컨테이너 너비에 맞춤 */
+}
+
+/* 지도 지역(path) 공통 스타일 */
+.region {
+  cursor: pointer;
+  stroke: #ffffff; /* 지역 경계선 색상 (흰색) */
+  stroke-width: 2px; /* 경계선 두께를 살짝 두껍게 하여 가시성 확보 */
+  fill: #e9e9e9; /* 기본 지역 색상 (밝은 회색) */
+  transition: fill 0.2s ease-in-out; /* 부드러운 색상 전환 효과 */
+
+  /* 모바일 환경 등에서 터치 피드백을 주기 위한 설정 */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 마우스 호버 시 스타일 */
+.region:hover {
+  fill: #aed8ff; /* 강조 색상 (부드러운 파란색) */
+}
+
+/* 선택된 지역 스타일 */
+.selected {
+  fill: #4da2ff; /* 선택된 지역 색상 (더 진한 파란색) */
+}
