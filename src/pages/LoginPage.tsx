@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../api/authApi'; // 로그인 API 함수 임포트
+import styles from './LoginPage.module.css'; // CSS 모듈 임포트
 
 /**
  * @function LoginPage
@@ -45,63 +46,58 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    // Tailwind CSS를 사용하여 로그인 폼의 스타일을 정의합니다.
-    // max-w-md: 최대 너비를 제한합니다.
-    // w-full: 부모 요소의 전체 너비를 사용합니다.
-    // p-8: 패딩을 줍니다.
-    // bg-white: 배경색을 흰색으로 설정합니다.
-    // rounded-lg: 모서리를 둥글게 만듭니다.
-    // shadow-lg: 그림자 효과를 추가합니다.
-    <div className="w-full sm:max-w-md md:max-w-lg mx-auto p-8 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">로그인</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
-            이메일
-          </label>
-          <input
-            type="text"
-            id="email"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} // 입력 값 변경 시 상태 업데이트
-            required // 필수 입력 필드
-          />
+    <div className={styles.pageContainer}>
+      <div className={styles.contentWrapper + " bg-white rounded-lg shadow-lg"}>
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">로그인</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
+              이메일
+            </label>
+            <input
+              type="text"
+              id="email"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)} // 입력 값 변경 시 상태 업데이트
+              required // 필수 입력 필드
+            />
+          </div>
+          <div className="mb-6">
+            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
+              비밀번호
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} // 입력 값 변경 시 상태 업데이트
+              required // 필수 입력 필드
+            />
+          </div>
+          {error && <p className="text-red-500 text-xs italic mb-4 text-center">{error}</p>}
+          <div className="flex items-center justify-between">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+              disabled={loading} // 로딩 중일 때는 버튼 비활성화
+            >
+              {loading ? '로그인 중...' : '로그인'}
+            </button>
+          </div>
+        </form>
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-600">
+            계정이 없으신가요?{' '}
+            <button
+              onClick={() => navigate('/register')}
+              className="font-bold text-blue-500 hover:text-blue-800 focus:outline-none"
+            >
+              회원가입
+            </button>
+          </p>
         </div>
-        <div className="mb-6">
-          <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
-            비밀번호
-          </label>
-          <input
-            type="password"
-            id="password"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} // 입력 값 변경 시 상태 업데이트
-            required // 필수 입력 필드
-          />
-        </div>
-        {error && <p className="text-red-500 text-xs italic mb-4 text-center">{error}</p>}
-        <div className="flex items-center justify-between">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-            disabled={loading} // 로딩 중일 때는 버튼 비활성화
-          >
-            {loading ? '로그인 중...' : '로그인'}
-          </button>
-        </div>
-      </form>
-      <div className="mt-6 text-center">
-        <p className="text-sm text-gray-600">
-          계정이 없으신가요?{' '}
-          <button
-            onClick={() => navigate('/register')}
-            className="font-bold text-blue-500 hover:text-blue-800 focus:outline-none"
-          >
-            회원가입
-          </button>
-        </p>
       </div>
     </div>
   );

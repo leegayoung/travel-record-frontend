@@ -1,0 +1,17 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 90vh; /* Adjust as needed */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.contentWrapper {
+  width: 100%;
+  max-width: 800px; /* Adjust based on form size */
+  margin: 0 auto;
+  text-align: center;
+}

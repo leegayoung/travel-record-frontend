@@ -1,6 +1,6 @@
 // src/components/PostForm.tsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import type { CreatePostPayload, Post } from '../types/post'; // 게시물 관련 타입 임포트
  // 게시물 관련 타입 임포트
 
@@ -29,14 +29,7 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit, initialPost, buttonText =
   const [content, setContent] = useState<string>(initialPost?.content || '');
   const [type, setType] = useState<'personal' | 'group'>(initialPost?.type || 'personal');
 
-  // initialPost prop이 변경될 때 폼 필드를 업데이트합니다. (주로 수정 모드에서 사용)
-  useEffect(() => {
-    if (initialPost) {
-      setTitle(initialPost.title);
-      setContent(initialPost.content);
-      setType(initialPost.type);
-    }
-  }, [initialPost]);
+
 
   /**
    * @function handleSubmit

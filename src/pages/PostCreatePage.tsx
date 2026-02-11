@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import PostForm from '../components/PostForm'; // 게시물 폼 컴포넌트 임포트
 import { createPost } from '../api/postApi'; // 게시물 생성 API 함수 임포트
 import type { CreatePostPayload } from '../types/post'; // 게시물 타입 임포트
+import styles from './PostCreatePage.module.css'; // CSS 모듈 임포트
 
 /**
  * @description 새로운 게시물을 작성하는 페이지 컴포넌트입니다.
@@ -60,15 +61,17 @@ const PostCreatePage: React.FC = () => {
   // 지역 정보가 없는 경우 렌더링을 막습니다.
   if (!selectedRegion) {
     return (
-      <div className="text-center p-8">
-        <p className="text-lg text-gray-600">지역 정보를 불러오는 중...</p>
+      <div className={styles.pageContainer}>
+        <div className={styles.contentWrapper}>
+          <p className="text-lg text-gray-600">지역 정보를 불러오는 중...</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4 sm:p-6 md:p-8">
-      <div className="bg-white rounded-lg shadow-xl p-6">
+    <div className={styles.pageContainer}>
+      <div className={styles.contentWrapper + " bg-white rounded-lg shadow-xl p-6"}>
         <h2 className="text-3xl font-bold mb-4 text-gray-800 text-center">
           <span className="text-blue-600">{selectedRegion}</span> 여행 기록하기
         </h2>
